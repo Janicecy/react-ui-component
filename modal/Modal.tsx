@@ -17,6 +17,8 @@ interface ModalProps {
   onClose?: (...args: any[]) => any;
 }
 
+
+// TODO: Add animation 
 const Modal: FunctionComponent<ModalProps> = ({
   cancelText = "Cancel",
   title = "Title",
@@ -29,11 +31,6 @@ const Modal: FunctionComponent<ModalProps> = ({
   ...props
 }): ReactElement => {
   const [_visible, set_visible] = useState(visible);
-  const closerNode = (
-    <div className="modal-close">
-      {closeIcon || <a href="javascript:;">&times;</a>}
-    </div>
-  );
 
   const handleCancel = (e: React.MouseEvent<HTMLButtonElement>) => {
     onCancel?.(e);
@@ -45,18 +42,26 @@ const Modal: FunctionComponent<ModalProps> = ({
     set_visible(false);
   };
 
+  const handleClose = (e: React.MouseEvent<HTMLButtonElement>) => {
+    onClose?.(e);
+    set_visible(false);
+  };
+
   return (
     <div className="modal-mask" style={{ display: !_visible && "none" }}>
       <div className="modal">
         <div className="modal-header">
           <div className="title">{title}</div>
-          {closerNode}
+          <button onClick={handleClose} className="modal-close">
+            {closeIcon || <span>&times;</span>}
+          </button>
         </div>
         <div className="modal-body">{props.children || ""}</div>
         <div className="modal-footer">
           <button onClick={handleCancel} className="modal-cancel">
             {cancelText}
           </button>
+
           <button onClick={handleOk} className="modal-ok">
             {okText || "Ok"}
           </button>

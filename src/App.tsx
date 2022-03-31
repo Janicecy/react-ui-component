@@ -15,8 +15,8 @@ function App() {
   
   return (
     <div className="App">
-      <Modal>
-        content
+      <Modal onOk={() => console.log("modal on ok")}>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad fugiat saepe id nobis molestias cupiditate. Nam at porro velit vel iste fugit mollitia recusandae itaque veniam delectus reiciendis, voluptatem ullam!
       </Modal>
     </div>
   );
