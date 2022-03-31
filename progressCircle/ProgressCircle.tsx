@@ -8,14 +8,14 @@ import React, {
 import "./progressCircle.scss";
 
 interface IProps {
-  percent: number;
+  percent?: number;
   strokeColor?: string;
   trailColor?: string;
   strikeWidth?: number;
 }
 
 const ProgressCircle: FunctionComponent<IProps> = ({
-  percent,
+  percent=0,
   strokeColor = "#1890ff",
   trailColor = "#f5f5f5",
   strikeWidth = 10,
